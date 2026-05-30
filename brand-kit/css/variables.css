@@ -1,0 +1,205 @@
+/**
+ * Mindset of Champions - CSS Custom Properties
+ * 
+ * Technology-agnostic CSS variables for use in any web project.
+ * Copy this file or import these variables into your stylesheet.
+ */
+
+:root {
+  /* ============================================
+     BRAND COLORS - Primary
+     ============================================ */
+  --moc-black: #0A0A0A;
+  --moc-red: #CC0000;
+  --moc-lime: #AAFF00;
+  --moc-white: #FFFFFF;
+
+  /* Brand Colors - Secondary */
+  --moc-red-hover: #AA0000;
+  --moc-lime-hover: #99DD00;
+  --moc-dark-surface: #111111;
+
+  /* ============================================
+     CHAMPIONS PILLAR COLORS
+     ============================================ */
+  
+  /* Phase 1: Foundation (C-H-A) */
+  --pillar-character: #DC2626;       /* C - Crimson - Shield */
+  --pillar-habits: #EA580C;          /* H - Orange - Flame */
+  --pillar-appearance: #D97706;      /* A - Amber - Sparkle */
+  
+  /* Phase 2: Direction (M-P-I) */
+  --pillar-mission: #059669;         /* M - Emerald - Target */
+  --pillar-positive: #0284C7;        /* P - Sky - Sun */
+  --pillar-intentionality: #4F46E5; /* I - Indigo - Compass */
+  
+  /* Phase 3: Launch (O-N-S) */
+  --pillar-obstacles: #7C3AED;       /* O - Violet - Mountain */
+  --pillar-network: #DB2777;         /* N - Pink - Users */
+  --pillar-success: #CA8A04;         /* S - Gold - Trophy */
+
+  /* ============================================
+     SEMANTIC TOKENS
+     ============================================ */
+  --color-background: var(--moc-black);
+  --color-foreground: var(--moc-white);
+  --color-primary: var(--moc-red);
+  --color-primary-foreground: var(--moc-white);
+  --color-accent: var(--moc-lime);
+  --color-accent-foreground: var(--moc-black);
+  --color-muted: rgba(255, 255, 255, 0.06);
+  --color-muted-foreground: rgba(255, 255, 255, 0.6);
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-ring: var(--moc-red);
+  --color-destructive: var(--moc-red);
+
+  /* ============================================
+     WHITE OPACITY SCALE
+     ============================================ */
+  --white-80: rgba(255, 255, 255, 0.8);   /* Primary text */
+  --white-70: rgba(255, 255, 255, 0.7);   /* Secondary text */
+  --white-60: rgba(255, 255, 255, 0.6);   /* Muted text */
+  --white-50: rgba(255, 255, 255, 0.5);   /* Tertiary text */
+  --white-40: rgba(255, 255, 255, 0.4);   /* Placeholder */
+  --white-12: rgba(255, 255, 255, 0.12);  /* Borders */
+  --white-10: rgba(255, 255, 255, 0.1);   /* Subtle borders */
+  --white-6: rgba(255, 255, 255, 0.06);   /* Card backgrounds */
+
+  /* ============================================
+     TYPOGRAPHY
+     ============================================ */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+
+  /* Font Sizes */
+  --text-hero: 7rem;      /* 112px */
+  --text-h1: 4rem;        /* 64px */
+  --text-h2: 3rem;        /* 48px */
+  --text-h3: 2rem;        /* 32px */
+  --text-h4: 1.5rem;      /* 24px */
+  --text-body-lg: 1.25rem; /* 20px */
+  --text-body: 1rem;      /* 16px */
+  --text-body-sm: 0.875rem; /* 14px */
+  --text-caption: 0.75rem; /* 12px */
+
+  /* Line Heights */
+  --leading-tight: 1.0;
+  --leading-snug: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.6;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
+  /* ============================================
+     SPACING
+     ============================================ */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+  --space-4xl: 6rem;     /* 96px */
+
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  --radius-sm: 0.5rem;   /* 8px */
+  --radius-md: 0.75rem;  /* 12px */
+  --radius-lg: 1rem;     /* 16px */
+  --radius-xl: 1.25rem;  /* 20px */
+  --radius-2xl: 1.5rem;  /* 24px */
+  --radius-full: 9999px;
+
+  /* ============================================
+     SHADOWS
+     ============================================ */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.5);
+  --shadow-red: 0 10px 25px rgba(204, 0, 0, 0.25);
+  --shadow-lime: 0 10px 25px rgba(170, 255, 0, 0.25);
+  --shadow-glow-red: 0 0 30px rgba(204, 0, 0, 0.3);
+
+  /* ============================================
+     TRANSITIONS
+     ============================================ */
+  --transition-fast: 150ms;
+  --transition-normal: 300ms;
+  --transition-medium: 500ms;
+  --transition-slow: 700ms;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ============================================
+     BREAKPOINTS (for reference)
+     ============================================ */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* ============================================
+     CONTAINER
+     ============================================ */
+  --container-max: 1280px;
+  --container-padding: 1rem;
+}
+
+/* ============================================
+   MEDIA QUERY: Larger screens
+   ============================================ */
+@media (min-width: 640px) {
+  :root {
+    --container-padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: 2rem;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Glass Card Effect */
+.glass-card {
+  background: var(--white-6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--white-12);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Red Accent Border */
+.red-accent-border {
+  border-left: 4px solid var(--moc-red);
+  padding-left: var(--space-lg);
+}
+
+/* Display Text */
+.text-display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  line-height: var(--leading-snug);
+}
+
+/* Body Text */
+.text-body {
+  font-family: var(--font-sans);
+  line-height: var(--leading-normal);
+}

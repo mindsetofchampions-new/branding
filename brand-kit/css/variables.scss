@@ -1,0 +1,323 @@
+/**
+ * Mindset of Champions - SCSS Variables
+ * 
+ * SCSS variables and maps for use in Sass-based projects.
+ */
+
+// ============================================
+// BRAND COLORS
+// ============================================
+
+// Primary
+$moc-black: #0A0A0A;
+$moc-red: #CC0000;
+$moc-lime: #AAFF00;
+$moc-white: #FFFFFF;
+
+// Secondary
+$moc-red-hover: #AA0000;
+$moc-lime-hover: #99DD00;
+$moc-dark-surface: #111111;
+
+// Color Map
+$brand-colors: (
+  'black': $moc-black,
+  'red': $moc-red,
+  'lime': $moc-lime,
+  'white': $moc-white,
+  'red-hover': $moc-red-hover,
+  'lime-hover': $moc-lime-hover,
+  'dark-surface': $moc-dark-surface
+);
+
+// ============================================
+// CHAMPIONS PILLAR COLORS
+// ============================================
+
+$pillar-character: #DC2626;       // C - Crimson - Shield
+$pillar-habits: #EA580C;          // H - Orange - Flame
+$pillar-appearance: #D97706;      // A - Amber - Sparkle
+$pillar-mission: #059669;         // M - Emerald - Target
+$pillar-positive: #0284C7;        // P - Sky - Sun
+$pillar-intentionality: #4F46E5; // I - Indigo - Compass
+$pillar-obstacles: #7C3AED;       // O - Violet - Mountain
+$pillar-network: #DB2777;         // N - Pink - Users
+$pillar-success: #CA8A04;         // S - Gold - Trophy
+
+// CHAMPIONS Map
+$champions-pillars: (
+  'character': (
+    color: $pillar-character,
+    letter: 'C',
+    icon: 'shield',
+    phase: 'foundation'
+  ),
+  'habits': (
+    color: $pillar-habits,
+    letter: 'H',
+    icon: 'flame',
+    phase: 'foundation'
+  ),
+  'appearance': (
+    color: $pillar-appearance,
+    letter: 'A',
+    icon: 'sparkle',
+    phase: 'foundation'
+  ),
+  'mission': (
+    color: $pillar-mission,
+    letter: 'M',
+    icon: 'target',
+    phase: 'direction'
+  ),
+  'positive': (
+    color: $pillar-positive,
+    letter: 'P',
+    icon: 'sun',
+    phase: 'direction'
+  ),
+  'intentionality': (
+    color: $pillar-intentionality,
+    letter: 'I',
+    icon: 'compass',
+    phase: 'direction'
+  ),
+  'obstacles': (
+    color: $pillar-obstacles,
+    letter: 'O',
+    icon: 'mountain',
+    phase: 'launch'
+  ),
+  'network': (
+    color: $pillar-network,
+    letter: 'N',
+    icon: 'users',
+    phase: 'launch'
+  ),
+  'success': (
+    color: $pillar-success,
+    letter: 'S',
+    icon: 'trophy',
+    phase: 'launch'
+  )
+);
+
+// Helper function to get pillar color
+@function pillar-color($pillar) {
+  @return map-get(map-get($champions-pillars, $pillar), 'color');
+}
+
+// ============================================
+// OPACITY SCALE
+// ============================================
+
+$white-80: rgba(255, 255, 255, 0.8);
+$white-70: rgba(255, 255, 255, 0.7);
+$white-60: rgba(255, 255, 255, 0.6);
+$white-50: rgba(255, 255, 255, 0.5);
+$white-40: rgba(255, 255, 255, 0.4);
+$white-12: rgba(255, 255, 255, 0.12);
+$white-10: rgba(255, 255, 255, 0.1);
+$white-6: rgba(255, 255, 255, 0.06);
+
+// ============================================
+// TYPOGRAPHY
+// ============================================
+
+$font-display: 'Bebas Neue', sans-serif;
+$font-sans: 'DM Sans', sans-serif;
+$font-mono: 'Geist Mono', monospace;
+
+// Font Sizes
+$text-hero: 7rem;
+$text-h1: 4rem;
+$text-h2: 3rem;
+$text-h3: 2rem;
+$text-h4: 1.5rem;
+$text-body-lg: 1.25rem;
+$text-body: 1rem;
+$text-body-sm: 0.875rem;
+$text-caption: 0.75rem;
+
+$font-sizes: (
+  'hero': $text-hero,
+  'h1': $text-h1,
+  'h2': $text-h2,
+  'h3': $text-h3,
+  'h4': $text-h4,
+  'body-lg': $text-body-lg,
+  'body': $text-body,
+  'body-sm': $text-body-sm,
+  'caption': $text-caption
+);
+
+// Line Heights
+$leading-tight: 1.0;
+$leading-snug: 1.2;
+$leading-normal: 1.5;
+$leading-relaxed: 1.6;
+
+// Letter Spacing
+$tracking-tight: -0.025em;
+$tracking-normal: 0;
+$tracking-wide: 0.025em;
+$tracking-wider: 0.05em;
+$tracking-widest: 0.1em;
+
+// ============================================
+// SPACING
+// ============================================
+
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 1.5rem;
+$space-xl: 2rem;
+$space-2xl: 3rem;
+$space-3xl: 4rem;
+$space-4xl: 6rem;
+
+$spacing: (
+  'xs': $space-xs,
+  'sm': $space-sm,
+  'md': $space-md,
+  'lg': $space-lg,
+  'xl': $space-xl,
+  '2xl': $space-2xl,
+  '3xl': $space-3xl,
+  '4xl': $space-4xl
+);
+
+// ============================================
+// BORDER RADIUS
+// ============================================
+
+$radius-sm: 0.5rem;
+$radius-md: 0.75rem;
+$radius-lg: 1rem;
+$radius-xl: 1.25rem;
+$radius-2xl: 1.5rem;
+$radius-full: 9999px;
+
+$radii: (
+  'sm': $radius-sm,
+  'md': $radius-md,
+  'lg': $radius-lg,
+  'xl': $radius-xl,
+  '2xl': $radius-2xl,
+  'full': $radius-full
+);
+
+// ============================================
+// SHADOWS
+// ============================================
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+$shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.5);
+$shadow-red: 0 10px 25px rgba(204, 0, 0, 0.25);
+$shadow-lime: 0 10px 25px rgba(170, 255, 0, 0.25);
+$shadow-glow-red: 0 0 30px rgba(204, 0, 0, 0.3);
+
+// ============================================
+// TRANSITIONS
+// ============================================
+
+$transition-fast: 150ms;
+$transition-normal: 300ms;
+$transition-medium: 500ms;
+$transition-slow: 700ms;
+$ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// ============================================
+// BREAKPOINTS
+// ============================================
+
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+$breakpoints: (
+  'sm': $breakpoint-sm,
+  'md': $breakpoint-md,
+  'lg': $breakpoint-lg,
+  'xl': $breakpoint-xl,
+  '2xl': $breakpoint-2xl
+);
+
+// Media query mixin
+@mixin breakpoint($bp) {
+  @media (min-width: map-get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+// ============================================
+// MIXINS
+// ============================================
+
+// Glass Card
+@mixin glass-card {
+  background: $white-6;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid $white-12;
+  border-radius: $radius-2xl;
+  box-shadow: $shadow-lg;
+}
+
+// Display Text
+@mixin display-text {
+  font-family: $font-display;
+  text-transform: uppercase;
+  letter-spacing: $tracking-wide;
+  line-height: $leading-snug;
+}
+
+// Red Accent Border
+@mixin red-accent-border {
+  border-left: 4px solid $moc-red;
+  padding-left: $space-lg;
+}
+
+// Button Base
+@mixin button-base {
+  font-family: $font-sans;
+  font-weight: 600;
+  padding: $space-md $space-xl;
+  border-radius: $radius-md;
+  transition: all $transition-normal $ease-smooth;
+  cursor: pointer;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Primary Button
+@mixin button-primary {
+  @include button-base;
+  background: $moc-red;
+  color: $moc-white;
+  
+  &:hover {
+    background: $moc-red-hover;
+    box-shadow: $shadow-red;
+  }
+}
+
+// Secondary Button  
+@mixin button-secondary {
+  @include button-base;
+  background: $moc-lime;
+  color: $moc-black;
+  
+  &:hover {
+    background: $moc-lime-hover;
+    box-shadow: $shadow-lime;
+  }
+}

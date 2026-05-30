@@ -1,0 +1,149 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "spacing": {
+    "0": {
+      "value": "0",
+      "type": "spacing"
+    },
+    "xs": {
+      "value": "0.25rem",
+      "type": "spacing",
+      "description": "4px - Tight spacing, icon gaps"
+    },
+    "sm": {
+      "value": "0.5rem",
+      "type": "spacing",
+      "description": "8px - Small padding"
+    },
+    "md": {
+      "value": "1rem",
+      "type": "spacing",
+      "description": "16px - Standard spacing"
+    },
+    "lg": {
+      "value": "1.5rem",
+      "type": "spacing",
+      "description": "24px - Card padding"
+    },
+    "xl": {
+      "value": "2rem",
+      "type": "spacing",
+      "description": "32px - Section spacing"
+    },
+    "2xl": {
+      "value": "3rem",
+      "type": "spacing",
+      "description": "48px - Large gaps"
+    },
+    "3xl": {
+      "value": "4rem",
+      "type": "spacing",
+      "description": "64px - Section margins"
+    },
+    "4xl": {
+      "value": "6rem",
+      "type": "spacing",
+      "description": "96px - Major breaks"
+    }
+  },
+  "borderRadius": {
+    "none": {
+      "value": "0",
+      "type": "borderRadius"
+    },
+    "sm": {
+      "value": "0.5rem",
+      "type": "borderRadius",
+      "description": "8px - Small elements"
+    },
+    "md": {
+      "value": "0.75rem",
+      "type": "borderRadius",
+      "description": "12px - Inputs"
+    },
+    "lg": {
+      "value": "1rem",
+      "type": "borderRadius",
+      "description": "16px - Standard"
+    },
+    "xl": {
+      "value": "1.25rem",
+      "type": "borderRadius",
+      "description": "20px - Cards"
+    },
+    "2xl": {
+      "value": "1.5rem",
+      "type": "borderRadius",
+      "description": "24px - Large cards"
+    },
+    "full": {
+      "value": "9999px",
+      "type": "borderRadius",
+      "description": "Pills, circles"
+    }
+  },
+  "borderWidth": {
+    "0": {
+      "value": "0",
+      "type": "borderWidth"
+    },
+    "1": {
+      "value": "1px",
+      "type": "borderWidth"
+    },
+    "2": {
+      "value": "2px",
+      "type": "borderWidth"
+    },
+    "4": {
+      "value": "4px",
+      "type": "borderWidth",
+      "description": "Accent borders"
+    }
+  },
+  "containerWidth": {
+    "sm": {
+      "value": "640px",
+      "type": "dimension"
+    },
+    "md": {
+      "value": "768px",
+      "type": "dimension"
+    },
+    "lg": {
+      "value": "1024px",
+      "type": "dimension"
+    },
+    "xl": {
+      "value": "1280px",
+      "type": "dimension",
+      "description": "Primary content width"
+    },
+    "2xl": {
+      "value": "1536px",
+      "type": "dimension"
+    }
+  },
+  "breakpoints": {
+    "sm": {
+      "value": "640px",
+      "type": "dimension"
+    },
+    "md": {
+      "value": "768px",
+      "type": "dimension"
+    },
+    "lg": {
+      "value": "1024px",
+      "type": "dimension"
+    },
+    "xl": {
+      "value": "1280px",
+      "type": "dimension"
+    },
+    "2xl": {
+      "value": "1536px",
+      "type": "dimension"
+    }
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "brand": {
+    "primary": {
+      "black": {
+        "value": "#0A0A0A",
+        "type": "color",
+        "description": "Primary background color - MOC Black"
+      },
+      "red": {
+        "value": "#CC0000",
+        "type": "color",
+        "description": "Primary accent color - MOC Red"
+      },
+      "lime": {
+        "value": "#AAFF00",
+        "type": "color",
+        "description": "Secondary accent color - MOC Lime"
+      },
+      "white": {
+        "value": "#FFFFFF",
+        "type": "color",
+        "description": "Foreground color - Pure White"
+      }
+    },
+    "secondary": {
+      "red-hover": {
+        "value": "#AA0000",
+        "type": "color",
+        "description": "Hover state for red elements"
+      },
+      "lime-hover": {
+        "value": "#99DD00",
+        "type": "color",
+        "description": "Hover state for lime elements"
+      },
+      "dark-surface": {
+        "value": "#111111",
+        "type": "color",
+        "description": "Secondary surface color"
+      }
+    }
+  },
+  "champions": {
+    "character": {
+      "value": "#DC2626",
+      "type": "color",
+      "description": "C - Character Development (Crimson)",
+      "icon": "shield",
+      "phase": "foundation"
+    },
+    "habits": {
+      "value": "#EA580C",
+      "type": "color",
+      "description": "H - Habits (Orange)",
+      "icon": "flame",
+      "phase": "foundation"
+    },
+    "appearance": {
+      "value": "#D97706",
+      "type": "color",
+      "description": "A - Appearance (Amber)",
+      "icon": "sparkle",
+      "phase": "foundation"
+    },
+    "mission": {
+      "value": "#059669",
+      "type": "color",
+      "description": "M - Mission (Emerald)",
+      "icon": "target",
+      "phase": "direction"
+    },
+    "positive": {
+      "value": "#0284C7",
+      "type": "color",
+      "description": "P - Positive Attitude (Sky)",
+      "icon": "sun",
+      "phase": "direction"
+    },
+    "intentionality": {
+      "value": "#4F46E5",
+      "type": "color",
+      "description": "I - Intentionality (Indigo)",
+      "icon": "compass",
+      "phase": "direction"
+    },
+    "obstacles": {
+      "value": "#7C3AED",
+      "type": "color",
+      "description": "O - Obstacles (Violet)",
+      "icon": "mountain",
+      "phase": "launch"
+    },
+    "network": {
+      "value": "#DB2777",
+      "type": "color",
+      "description": "N - Network (Pink)",
+      "icon": "users",
+      "phase": "launch"
+    },
+    "success": {
+      "value": "#CA8A04",
+      "type": "color",
+      "description": "S - Success (Gold)",
+      "icon": "trophy",
+      "phase": "launch"
+    }
+  },
+  "semantic": {
+    "background": {
+      "value": "{brand.primary.black}",
+      "type": "color"
+    },
+    "foreground": {
+      "value": "{brand.primary.white}",
+      "type": "color"
+    },
+    "primary": {
+      "value": "{brand.primary.red}",
+      "type": "color"
+    },
+    "accent": {
+      "value": "{brand.primary.lime}",
+      "type": "color"
+    },
+    "muted": {
+      "value": "rgba(255, 255, 255, 0.06)",
+      "type": "color"
+    },
+    "border": {
+      "value": "rgba(255, 255, 255, 0.12)",
+      "type": "color"
+    }
+  },
+  "opacity": {
+    "white-80": {
+      "value": "rgba(255, 255, 255, 0.8)",
+      "type": "color",
+      "description": "Primary body text"
+    },
+    "white-70": {
+      "value": "rgba(255, 255, 255, 0.7)",
+      "type": "color",
+      "description": "Secondary text"
+    },
+    "white-60": {
+      "value": "rgba(255, 255, 255, 0.6)",
+      "type": "color",
+      "description": "Muted text"
+    },
+    "white-50": {
+      "value": "rgba(255, 255, 255, 0.5)",
+      "type": "color",
+      "description": "Tertiary text"
+    },
+    "white-40": {
+      "value": "rgba(255, 255, 255, 0.4)",
+      "type": "color",
+      "description": "Placeholder text"
+    },
+    "white-12": {
+      "value": "rgba(255, 255, 255, 0.12)",
+      "type": "color",
+      "description": "Borders"
+    },
+    "white-10": {
+      "value": "rgba(255, 255, 255, 0.1)",
+      "type": "color",
+      "description": "Subtle borders"
+    },
+    "white-6": {
+      "value": "rgba(255, 255, 255, 0.06)",
+      "type": "color",
+      "description": "Card backgrounds"
+    }
+  }
+}
