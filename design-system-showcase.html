@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mindset of Champions — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- TOKENS (from brand-kit/css/variables.css) ---- */
+    :root {
+      --moc-black: #0A0A0A;
+      --moc-red: #CC0000;
+      --moc-lime: #AAFF00;
+      --moc-white: #FFFFFF;
+      --moc-red-hover: #AA0000;
+      --moc-lime-hover: #99DD00;
+      --moc-dark-surface: #111111;
+
+      --pillar-character: #DC2626;
+      --pillar-habits: #EA580C;
+      --pillar-appearance: #D97706;
+      --pillar-mission: #059669;
+      --pillar-positive: #0284C7;
+      --pillar-intentionality: #4F46E5;
+      --pillar-obstacles: #7C3AED;
+      --pillar-network: #DB2777;
+      --pillar-success: #CA8A04;
+
+      --color-background: var(--moc-black);
+      --color-foreground: var(--moc-white);
+      --color-primary: var(--moc-red);
+      --color-accent: var(--moc-lime);
+      --color-muted: rgba(255,255,255,0.06);
+      --color-border: rgba(255,255,255,0.12);
+
+      --white-80: rgba(255,255,255,0.8);
+      --white-70: rgba(255,255,255,0.7);
+      --white-60: rgba(255,255,255,0.6);
+      --white-50: rgba(255,255,255,0.5);
+      --white-40: rgba(255,255,255,0.4);
+      --white-12: rgba(255,255,255,0.12);
+      --white-10: rgba(255,255,255,0.10);
+      --white-6: rgba(255,255,255,0.06);
+
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-mono: 'Courier New', monospace;
+
+      --text-hero: 7rem;
+      --text-h1: 4rem;
+      --text-h2: 3rem;
+      --text-h3: 2rem;
+      --text-h4: 1.5rem;
+      --text-body-lg: 1.25rem;
+      --text-body: 1rem;
+      --text-body-sm: 0.875rem;
+      --text-caption: 0.75rem;
+
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --space-4xl: 6rem;
+
+      --radius-sm: 0.5rem;
+      --radius-md: 0.75rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.25rem;
+      --radius-2xl: 1.5rem;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
+      --shadow-xl: 0 12px 40px rgba(0,0,0,0.5);
+      --shadow-red: 0 10px 25px rgba(204,0,0,0.25);
+      --shadow-lime: 0 10px 25px rgba(170,255,0,0.25);
+      --shadow-glow-red: 0 0 30px rgba(204,0,0,0.3);
+
+      --transition-fast: 150ms;
+      --transition-normal: 300ms;
+      --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ---- RESET ---- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--moc-black);
+      color: var(--moc-white);
+      font-family: var(--font-sans);
+      font-size: var(--text-body);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- LAYOUT ---- */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    section {
+      padding: var(--space-4xl) 0;
+      border-bottom: 1px solid var(--white-12);
+    }
+
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: var(--text-caption);
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--moc-red);
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--text-h2);
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+      line-height: 1.1;
+      margin-bottom: var(--space-2xl);
+    }
+
+    /* ---- GRID HELPERS ---- */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-md); }
+    @media (max-width: 900px) {
+      .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+    }
+
+    /* ---- GLASS CARD ---- */
+    .glass-card {
+      background: var(--white-6);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-lg);
+      padding: var(--space-lg);
+      transition: background var(--transition-normal) var(--ease-smooth),
+                  border-color var(--transition-normal) var(--ease-smooth),
+                  box-shadow var(--transition-normal) var(--ease-smooth);
+    }
+    .glass-card:hover {
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.18);
+      box-shadow: 0 12px 40px rgba(204,0,0,0.15);
+    }
+
+    .solid-card {
+      background: var(--moc-dark-surface);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+    }
+
+    /* ====================================================
+       HERO NAV
+       ==================================================== */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--white-12);
+      padding: var(--space-md) 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+    }
+    .nav-wordmark {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      color: var(--moc-white);
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--space-lg);
+      list-style: none;
+      margin-left: auto;
+    }
+    .nav-links a {
+      font-size: var(--text-body-sm);
+      font-weight: 500;
+      color: var(--white-60);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    .nav-links a:hover { color: var(--moc-white); }
+
+    /* ====================================================
+       HERO
+       ==================================================== */
+    #hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--white-12);
+      padding: var(--space-4xl) 0;
+    }
+    .hero-glow-red {
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 500px;
+      height: 500px;
+      background: rgba(204,0,0,0.08);
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .hero-glow-lime {
+      position: absolute;
+      bottom: -80px;
+      left: 40%;
+      width: 400px;
+      height: 400px;
+      background: rgba(170,255,0,0.06);
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--white-6);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius-full);
+      padding: var(--space-sm) var(--space-lg);
+      font-size: var(--text-body-sm);
+      color: var(--white-80);
+      margin-bottom: var(--space-xl);
+    }
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--moc-lime);
+      animation: pulse-lime 2s ease-in-out infinite;
+    }
+    @keyframes pulse-lime {
+      0%,100% { box-shadow: 0 0 0 0 rgba(170,255,0,0.5); }
+      50% { box-shadow: 0 0 0 8px rgba(170,255,0,0); }
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 10vw, var(--text-hero));
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+      line-height: 1.0;
+      margin-bottom: var(--space-xl);
+    }
+    .hero-title span { color: var(--moc-red); }
+    .hero-sub {
+      font-size: var(--text-body-lg);
+      color: var(--white-60);
+      max-width: 560px;
+      margin-bottom: var(--space-xl);
+      line-height: 1.6;
+    }
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-size: var(--text-h4);
+      letter-spacing: 0.05em;
+      color: var(--moc-lime);
+      text-transform: uppercase;
+    }
+
+    /* ====================================================
+       COLOR SYSTEM
+       ==================================================== */
+    .swatch-row { display: flex; flex-wrap: wrap; gap: var(--space-md); margin-bottom: var(--space-xl); }
+    .swatch {
+      flex: 1;
+      min-width: 140px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--white-10);
+    }
+    .swatch-color {
+      height: 100px;
+    }
+    .swatch-info {
+      background: var(--moc-dark-surface);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .swatch-name {
+      font-weight: 600;
+      font-size: var(--text-body-sm);
+      margin-bottom: 2px;
+    }
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      color: var(--white-60);
+    }
+    .swatch-usage {
+      font-size: var(--text-caption);
+      color: var(--white-40);
+      margin-top: 2px;
+    }
+
+    .opacity-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-sm); margin-bottom: var(--space-xl); }
+    @media (max-width: 640px) { .opacity-row { grid-template-columns: repeat(2, 1fr); } }
+    .opacity-swatch {
+      height: 56px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--white-10);
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-xs) var(--space-sm);
+    }
+    .opacity-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--white-60);
+    }
+
+    /* ====================================================
+       TYPOGRAPHY
+       ==================================================== */
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-xl);
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid var(--white-12);
+    }
+    .type-meta {
+      width: 180px;
+      flex-shrink: 0;
+    }
+    .type-meta-name {
+      font-size: var(--text-body-sm);
+      font-weight: 600;
+      color: var(--white-80);
+      margin-bottom: 2px;
+    }
+    .type-meta-detail {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--white-40);
+      line-height: 1.6;
+    }
+    .type-sample { flex: 1; }
+
+    /* ====================================================
+       SPACING
+       ==================================================== */
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--white-10);
+    }
+    .spacing-bar-wrap { width: 320px; }
+    .spacing-bar {
+      height: 24px;
+      background: linear-gradient(90deg, var(--moc-red), rgba(204,0,0,0.4));
+      border-radius: var(--radius-sm);
+    }
+    .spacing-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      color: var(--white-60);
+      width: 80px;
+    }
+    .spacing-value {
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      color: var(--white-40);
+    }
+
+    /* ====================================================
+       BUTTONS
+       ==================================================== */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-sans);
+      font-size: var(--text-body-sm);
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1.5rem;
+      transition: all var(--transition-normal) var(--ease-smooth);
+    }
+    .btn-primary {
+      background: var(--moc-red);
+      color: var(--moc-white);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-primary:hover {
+      background: var(--moc-red-hover);
+      box-shadow: var(--shadow-red);
+      transform: scale(1.04);
+    }
+    .btn-accent {
+      background: var(--moc-lime);
+      color: var(--moc-black);
+    }
+    .btn-accent:hover {
+      background: var(--moc-lime-hover);
+      box-shadow: var(--shadow-lime);
+      transform: scale(1.04);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--moc-white);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline:hover {
+      background: var(--white-12);
+      border-color: rgba(255,255,255,0.5);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--white-70);
+    }
+    .btn-ghost:hover {
+      background: var(--white-6);
+      color: var(--moc-white);
+    }
+    .btn-sm {
+      font-size: var(--text-caption);
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-sm);
+    }
+    .btn-lg {
+      font-size: var(--text-body);
+      padding: 1rem 2.5rem;
+      border-radius: var(--radius-xl);
+    }
+
+    /* ====================================================
+       BADGES & PILLS
+       ==================================================== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      background: var(--white-6);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius-full);
+      padding: var(--space-sm) var(--space-lg);
+      font-size: var(--text-body-sm);
+      color: var(--white-80);
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--white-10);
+      border-radius: var(--radius-full);
+      padding: var(--space-xs) var(--space-md);
+      font-size: var(--text-caption);
+      color: var(--white-80);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .pill-red { background: rgba(204,0,0,0.2); color: #FF6666; border: 1px solid rgba(204,0,0,0.3); }
+    .pill-lime { background: rgba(170,255,0,0.15); color: var(--moc-lime); border: 1px solid rgba(170,255,0,0.3); }
+
+    /* ====================================================
+       INPUTS
+       ==================================================== */
+    .input-group { display: flex; flex-direction: column; gap: var(--space-sm); margin-bottom: var(--space-lg); }
+    .input-label {
+      font-size: var(--text-body-sm);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white-60);
+    }
+    .input {
+      background: var(--white-6);
+      border: 1px solid var(--white-10);
+      border-radius: var(--radius-md);
+      color: var(--moc-white);
+      font-family: var(--font-sans);
+      font-size: var(--text-body);
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color var(--transition-fast);
+      width: 100%;
+    }
+    .input::placeholder { color: var(--white-40); }
+    .input:focus { border-color: var(--moc-red); box-shadow: 0 0 0 3px rgba(204,0,0,0.2); }
+    .input-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); }
+    @media (max-width: 640px) { .input-row { grid-template-columns: 1fr; } }
+
+    /* ====================================================
+       CARDS SHOWCASE
+       ==================================================== */
+    .red-accent-border {
+      border-left: 4px solid var(--moc-red);
+      padding-left: var(--space-lg);
+    }
+
+    /* ====================================================
+       SHADOWS
+       ==================================================== */
+    .shadow-demo {
+      background: var(--moc-dark-surface);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+    .shadow-demo-name {
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      color: var(--white-60);
+      text-align: center;
+    }
+
+    /* ====================================================
+       CHAMPIONS FRAMEWORK
+       ==================================================== */
+    .champions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+    @media (max-width: 900px) { .champions-grid { grid-template-columns: 1fr; } }
+
+    .pillar-card {
+      background: var(--white-6);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius-xl);
+      padding: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-normal) var(--ease-smooth),
+                  box-shadow var(--transition-normal) var(--ease-smooth);
+    }
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+    .pillar-card:hover { transform: translateY(-4px); }
+    .pillar-card-accent {
+      width: 4px;
+      border-radius: 2px;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    .pillar-letter {
+      width: 48px;
+      height: 48px;
+      background: var(--white-6);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.025em;
+      flex-shrink: 0;
+    }
+    .pillar-meta {}
+    .pillar-name {
+      font-family: var(--font-display);
+      font-size: var(--text-h4);
+      letter-spacing: 0.025em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+    .pillar-phase-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      margin-top: 4px;
+      background: var(--white-10);
+      color: var(--white-60);
+    }
+    .pillar-desc {
+      font-size: var(--text-body-sm);
+      color: var(--white-60);
+      line-height: 1.5;
+    }
+
+    .phase-block {
+      margin-bottom: var(--space-xl);
+    }
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    .phase-number {
+      font-family: var(--font-display);
+      font-size: var(--text-h2);
+      line-height: 1;
+      color: var(--white-12);
+    }
+    .phase-info {}
+    .phase-title {
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+    }
+    .phase-theme {
+      font-size: var(--text-body-sm);
+      color: var(--white-60);
+    }
+
+    /* ====================================================
+       BORDER RADIUS
+       ==================================================== */
+    .radius-demos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+      align-items: flex-end;
+    }
+    .radius-demo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .radius-box {
+      background: rgba(204,0,0,0.2);
+      border: 2px solid var(--moc-red);
+      width: 80px;
+      height: 80px;
+    }
+    .radius-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--white-60);
+      text-align: center;
+    }
+
+    /* ====================================================
+       ANIMATION SHOWCASE
+       ==================================================== */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slide-left {
+      from { opacity: 0; transform: translateX(-40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes scale-in {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes pop-in {
+      0%  { opacity: 0; transform: scale(0.8) translateY(20px); }
+      70% { transform: scale(1.02) translateY(-2px); }
+      100%{ opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes pulse-glow {
+      0%,100% { box-shadow: 0 0 20px rgba(204,0,0,0.3); }
+      50%     { box-shadow: 0 0 40px rgba(204,0,0,0.6); }
+    }
+    @keyframes bounce-slow {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-10px); }
+    }
+
+    .anim-trigger { animation-play-state: paused; }
+    .anim-trigger.playing { animation-play-state: running; }
+
+    .anim-demos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+    }
+    .anim-box {
+      background: var(--white-6);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      cursor: pointer;
+      min-width: 160px;
+      user-select: none;
+    }
+    .anim-box:hover .anim-dot { animation-play-state: running !important; }
+    .anim-box-label {
+      font-size: var(--text-caption);
+      color: var(--white-60);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+    .anim-dot {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--moc-red);
+      animation-duration: 800ms;
+      animation-fill-mode: both;
+      animation-iteration-count: 1;
+      animation-play-state: paused;
+    }
+    .anim-fade-up   .anim-dot { animation-name: fade-up; }
+    .anim-slide-left .anim-dot { animation-name: slide-left; }
+    .anim-scale-in  .anim-dot { animation-name: scale-in; }
+    .anim-pop-in    .anim-dot { animation-name: pop-in; animation-duration: 500ms; }
+    .anim-glow .anim-dot { animation-name: pulse-glow; animation-duration: 2s; animation-iteration-count: infinite; animation-play-state: running; }
+    .anim-bounce .anim-dot { animation-name: bounce-slow; animation-duration: 2s; animation-iteration-count: infinite; animation-play-state: running; }
+
+    /* ====================================================
+       FOOTER
+       ==================================================== */
+    footer {
+      padding: var(--space-2xl) 0;
+      text-align: center;
+    }
+    .footer-tagline {
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-md);
+    }
+    .footer-tagline span { color: var(--moc-lime); }
+    .footer-sub {
+      font-size: var(--text-body-sm);
+      color: var(--white-40);
+    }
+
+    /* ====================================================
+       UTILITY STRIP
+       ==================================================== */
+    .strip {
+      height: 4px;
+      background: linear-gradient(90deg, var(--moc-red) 0%, var(--moc-lime) 100%);
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP STRIP -->
+<div class="strip"></div>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <img src="brand-kit/logos/moc-logo.svg" alt="MOC Logo" onerror="this.style.display='none'" />
+      <span class="nav-wordmark">MOC Design System</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#colors">Colors</a></li>
+      <li><a href="#typography">Type</a></li>
+      <li><a href="#spacing">Spacing</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#champions">Champions</a></li>
+      <li><a href="#motion">Motion</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow-red" aria-hidden="true"></div>
+  <div class="hero-glow-lime" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-badge">
+      <span class="hero-badge-dot" aria-hidden="true"></span>
+      Design System v1.0
+    </div>
+    <h1 class="hero-title">
+      Mindset<br/>of <span>Champions</span>
+    </h1>
+    <p class="hero-sub">
+      A technology-agnostic design system for building consistent MOC experiences across any platform or framework.
+    </p>
+    <p class="hero-tagline">A League. A Lab. A Legacy.</p>
+  </div>
+</section>
+
+<!-- COLORS -->
+<section id="colors">
+  <div class="container">
+    <p class="section-label">01 — Foundation</p>
+    <h2 class="section-title">Color System</h2>
+
+    <p class="section-label" style="margin-bottom: var(--space-md);">Primary Palette &mdash; 70 / 20 / 7 / 3 distribution</p>
+    <div class="swatch-row">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0A0A0A; border-bottom:1px solid rgba(255,255,255,0.1);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">MOC Black</div>
+          <div class="swatch-hex">#0A0A0A</div>
+          <div class="swatch-usage">Background &mdash; 70%</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#CC0000;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">MOC Red</div>
+          <div class="swatch-hex">#CC0000</div>
+          <div class="swatch-usage">CTAs, Accents &mdash; 7%</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#AAFF00;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:#0A0A0A;">MOC Lime</div>
+          <div class="swatch-hex" style="color:rgba(10,10,10,0.6);">#AAFF00</div>
+          <div class="swatch-usage" style="color:rgba(10,10,10,0.5);">Highlights &mdash; 3%</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFFFFF;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:#0A0A0A;">Pure White</div>
+          <div class="swatch-hex" style="color:rgba(10,10,10,0.6);">#FFFFFF</div>
+          <div class="swatch-usage" style="color:rgba(10,10,10,0.5);">Text, UI &mdash; 20%</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-label" style="margin-bottom: var(--space-md);">Secondary Palette</p>
+    <div class="swatch-row">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#AA0000;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Red Hover</div>
+          <div class="swatch-hex">#AA0000</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#99DD00;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:#0A0A0A;">Lime Hover</div>
+          <div class="swatch-hex" style="color:rgba(10,10,10,0.6);">#99DD00</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#111111; border-bottom:1px solid rgba(255,255,255,0.1);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Dark Surface</div>
+          <div class="swatch-hex">#111111</div>
+        </div>
+      </div>
+      <div class="swatch" style="background:transparent;border:none;box-shadow:none;"></div>
+    </div>
+
+    <p class="section-label" style="margin-bottom: var(--space-md);">White Opacity Scale (hover to see)</p>
+    <div class="opacity-row">
+      <div class="opacity-swatch" style="background:rgba(255,255,255,0.8);"><span class="opacity-label" style="color:#0A0A0A;">white/80</span></div>
+      <div class="opacity-swatch" style="background:rgba(255,255,255,0.7);"><span class="opacity-label" style="color:#0A0A0A;">white/70</span></div>
+      <div class="opacity-swatch" style="background:rgba(255,255,255,0.6);"><span class="opacity-label" style="color:#0A0A0A;">white/60</span></div>
+      <div class="opacity-swatch" style="background:rgba(255,255,255,0.5);"><span class="opacity-label" style="color:#0A0A0A;">white/50</span></div>
+      <div class="opacity-swatch" style="background:rgba(255,255,255,0.4);"><span class="opacity-label" style="color:#0A0A0A;">white/40</span></div>
+      <div class="opacity-swatch" style="background:rgba(255,255,255,0.12);"><span class="opacity-label">white/12</span></div>
+      <div class="opacity-swatch" style="background:rgba(255,255,255,0.10);"><span class="opacity-label">white/10</span></div>
+      <div class="opacity-swatch" style="background:rgba(255,255,255,0.06);"><span class="opacity-label">white/6</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section id="typography">
+  <div class="container">
+    <p class="section-label">02 — Typography</p>
+    <h2 class="section-title">Type Scale</h2>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Hero</div>
+        <div class="type-meta-detail">Bebas Neue / 7rem / tracking-wide</div>
+      </div>
+      <div class="type-sample">
+        <span style="font-family:var(--font-display);font-size:clamp(3rem,7vw,7rem);text-transform:uppercase;letter-spacing:0.025em;line-height:1;">Champions</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">H1 &mdash; 4rem</div>
+        <div class="type-meta-detail">Bebas Neue / uppercase</div>
+      </div>
+      <div class="type-sample">
+        <h1 style="font-family:var(--font-display);font-size:var(--text-h1);text-transform:uppercase;letter-spacing:0.025em;font-weight:400;">Build Your Legacy</h1>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">H2 &mdash; 3rem</div>
+        <div class="type-meta-detail">Bebas Neue / uppercase</div>
+      </div>
+      <div class="type-sample">
+        <h2 style="font-family:var(--font-display);font-size:var(--text-h2);text-transform:uppercase;letter-spacing:0.025em;font-weight:400;">Compete. Create. Conquer.</h2>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">H3 &mdash; 2rem</div>
+        <div class="type-meta-detail">Bebas Neue / uppercase</div>
+      </div>
+      <div class="type-sample">
+        <h3 style="font-family:var(--font-display);font-size:var(--text-h3);text-transform:uppercase;letter-spacing:0.025em;font-weight:400;">Esports. Leadership. Careers.</h3>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Body Large &mdash; 1.25rem</div>
+        <div class="type-meta-detail">DM Sans / line-height 1.6</div>
+      </div>
+      <div class="type-sample">
+        <p style="font-size:var(--text-body-lg);color:var(--white-80);line-height:1.6;">Mindset of Champions leverages esports, media production, and live events to deliver social-emotional learning, career readiness, and leadership development to underserved youth.</p>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Body &mdash; 1rem</div>
+        <div class="type-meta-detail">DM Sans / line-height 1.5</div>
+      </div>
+      <div class="type-sample">
+        <p style="font-size:var(--text-body);color:var(--white-60);line-height:1.5;">We believe in the potential of every young person. We pursue the highest standards in everything we do, and we are rooted in Philadelphia and committed to our neighborhoods.</p>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Caption &mdash; 0.75rem</div>
+        <div class="type-meta-detail">DM Sans / 500 / uppercase / tracking-widest</div>
+      </div>
+      <div class="type-sample">
+        <span style="font-size:var(--text-caption);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--white-50);">Philadelphia, PA &mdash; Est. 2020</span>
+      </div>
+    </div>
+    <div class="type-row" style="border-bottom:none;">
+      <div class="type-meta">
+        <div class="type-meta-name">Mono</div>
+        <div class="type-meta-detail">Courier New (Geist Mono)</div>
+      </div>
+      <div class="type-sample">
+        <code style="font-family:var(--font-mono);font-size:var(--text-body-sm);color:var(--moc-lime);">--moc-red: #CC0000;</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPACING -->
+<section id="spacing">
+  <div class="container">
+    <p class="section-label">03 — Layout</p>
+    <h2 class="section-title">Spacing & Radius</h2>
+
+    <div style="margin-bottom:var(--space-2xl);">
+      <p class="section-label" style="margin-bottom:var(--space-md);">Spacing Scale</p>
+      <div class="spacing-row">
+        <div class="spacing-label">xs</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:4px;"></div></div>
+        <div class="spacing-value">4px / 0.25rem</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">sm</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px;"></div></div>
+        <div class="spacing-value">8px / 0.5rem</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">md</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px;"></div></div>
+        <div class="spacing-value">16px / 1rem</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">lg</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px;"></div></div>
+        <div class="spacing-value">24px / 1.5rem</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">xl</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:32px;"></div></div>
+        <div class="spacing-value">32px / 2rem</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">2xl</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px;"></div></div>
+        <div class="spacing-value">48px / 3rem</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">3xl</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:64px;"></div></div>
+        <div class="spacing-value">64px / 4rem</div>
+      </div>
+      <div class="spacing-row" style="border-bottom:none;">
+        <div class="spacing-label">4xl</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:96px;"></div></div>
+        <div class="spacing-value">96px / 6rem</div>
+      </div>
+    </div>
+
+    <p class="section-label" style="margin-bottom:var(--space-xl);">Border Radius</p>
+    <div class="radius-demos">
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius:var(--radius-sm);"></div>
+        <div class="radius-label">sm<br/>8px</div>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius:var(--radius-md);"></div>
+        <div class="radius-label">md<br/>12px</div>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius:var(--radius-lg);"></div>
+        <div class="radius-label">lg<br/>16px</div>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius:var(--radius-xl);"></div>
+        <div class="radius-label">xl<br/>20px</div>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius:var(--radius-2xl);"></div>
+        <div class="radius-label">2xl<br/>24px</div>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius:var(--radius-full);width:80px;height:80px;"></div>
+        <div class="radius-label">full<br/>9999px</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section id="components">
+  <div class="container">
+    <p class="section-label">04 — Components</p>
+    <h2 class="section-title">UI Components</h2>
+
+    <!-- Buttons -->
+    <p class="section-label" style="margin-bottom:var(--space-lg);">Buttons</p>
+    <div class="btn-row">
+      <button class="btn btn-primary btn-lg">Primary CTA</button>
+      <button class="btn btn-accent btn-lg">Secondary Accent</button>
+      <button class="btn btn-outline btn-lg">Outline</button>
+      <button class="btn btn-ghost btn-lg">Ghost</button>
+    </div>
+    <div class="btn-row" style="margin-bottom:var(--space-2xl);">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-accent">Accent</button>
+      <button class="btn btn-outline">Outline</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-accent btn-sm">Small</button>
+    </div>
+
+    <!-- Badges & Pills -->
+    <p class="section-label" style="margin-bottom:var(--space-lg);">Badges &amp; Pills</p>
+    <div class="btn-row" style="margin-bottom:var(--space-2xl);">
+      <span class="badge">Status Badge</span>
+      <span class="badge"><span style="width:8px;height:8px;border-radius:50%;background:var(--moc-lime);display:inline-block;margin-right:6px;"></span>Live Season</span>
+      <span class="pill">Tag</span>
+      <span class="pill pill-red">Active</span>
+      <span class="pill pill-lime">Champion</span>
+      <span class="pill" style="background:rgba(79,70,229,0.2);color:#818cf8;border:1px solid rgba(79,70,229,0.3);">Intentional</span>
+    </div>
+
+    <!-- Cards -->
+    <p class="section-label" style="margin-bottom:var(--space-lg);">Cards</p>
+    <div class="grid-3" style="margin-bottom:var(--space-2xl);">
+      <div class="glass-card">
+        <p class="section-label" style="margin-bottom:var(--space-sm);">Glass Card</p>
+        <h3 style="font-family:var(--font-display);font-size:var(--text-h4);text-transform:uppercase;letter-spacing:0.025em;margin-bottom:var(--space-sm);">Esports League</h3>
+        <p style="font-size:var(--text-body-sm);color:var(--white-60);line-height:1.6;">Competitive gaming that builds teamwork, discipline, and resilience. Hover to see the interactive state.</p>
+        <div style="margin-top:var(--space-lg);">
+          <button class="btn btn-primary btn-sm">Learn More</button>
+        </div>
+      </div>
+      <div class="solid-card">
+        <p class="section-label" style="margin-bottom:var(--space-sm);">Solid Card</p>
+        <h3 style="font-family:var(--font-display);font-size:var(--text-h4);text-transform:uppercase;letter-spacing:0.025em;margin-bottom:var(--space-sm);">Media Lab</h3>
+        <p style="font-size:var(--text-body-sm);color:var(--white-60);line-height:1.6;">Hands-on learning in media production, technology, and career-readiness skills.</p>
+        <div style="margin-top:var(--space-lg);">
+          <button class="btn btn-outline btn-sm">Learn More</button>
+        </div>
+      </div>
+      <div class="glass-card red-accent-border" style="border-radius:var(--radius-xl);">
+        <p class="section-label" style="margin-bottom:var(--space-sm);">Red Accent Border</p>
+        <h3 style="font-family:var(--font-display);font-size:var(--text-h4);text-transform:uppercase;letter-spacing:0.025em;margin-bottom:var(--space-sm);">Key Insight</h3>
+        <p style="font-size:var(--text-body-sm);color:var(--white-60);line-height:1.6;">Use a 4px red left border to highlight key quotes, callouts, or important content blocks.</p>
+      </div>
+    </div>
+
+    <!-- Inputs -->
+    <p class="section-label" style="margin-bottom:var(--space-lg);">Form Inputs</p>
+    <div class="input-row" style="max-width:800px;">
+      <div class="input-group">
+        <label class="input-label">First Name</label>
+        <input class="input" type="text" placeholder="Enter your first name" />
+      </div>
+      <div class="input-group">
+        <label class="input-label">Email Address</label>
+        <input class="input" type="email" placeholder="you@example.com" />
+      </div>
+      <div class="input-group">
+        <label class="input-label">Message</label>
+        <textarea class="input" rows="3" placeholder="Tell us about yourself..." style="resize:vertical;"></textarea>
+      </div>
+      <div class="input-group">
+        <label class="input-label">Program Interest</label>
+        <select class="input" style="appearance:none;">
+          <option>Esports League</option>
+          <option>Media Lab</option>
+          <option>Leadership Track</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Shadows -->
+    <p class="section-label" style="margin-top:var(--space-2xl);margin-bottom:var(--space-lg);">Shadows</p>
+    <div class="grid-4">
+      <div class="shadow-demo" style="box-shadow:var(--shadow-sm);">
+        <div style="width:40px;height:40px;border-radius:var(--radius-md);background:var(--white-10);"></div>
+        <div class="shadow-demo-name">shadow-sm</div>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-md);">
+        <div style="width:40px;height:40px;border-radius:var(--radius-md);background:var(--white-10);"></div>
+        <div class="shadow-demo-name">shadow-md</div>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-red);">
+        <div style="width:40px;height:40px;border-radius:var(--radius-md);background:rgba(204,0,0,0.3);"></div>
+        <div class="shadow-demo-name">shadow-red</div>
+      </div>
+      <div class="shadow-demo" style="box-shadow:var(--shadow-glow-red);">
+        <div style="width:40px;height:40px;border-radius:var(--radius-md);background:var(--moc-red);animation:pulse-glow 2s ease-in-out infinite;"></div>
+        <div class="shadow-demo-name">glow-red</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAMPIONS FRAMEWORK -->
+<section id="champions">
+  <div class="container">
+    <p class="section-label">05 — Framework</p>
+    <h2 class="section-title">C.H.A.M.P.I.O.N.S.</h2>
+    <p style="font-size:var(--text-body-lg);color:var(--white-60);max-width:640px;margin-bottom:var(--space-3xl);line-height:1.6;">
+      Nine pillars of development organized into three phases of growth. Each pillar has a dedicated color, icon, and visual identity.
+    </p>
+
+    <!-- Phase 1 -->
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-number">01</div>
+        <div class="phase-info">
+          <div class="phase-title">Foundation</div>
+          <div class="phase-theme">Who I am + How I show up</div>
+        </div>
+      </div>
+      <div class="champions-grid">
+        <div class="pillar-card" style="box-shadow:0 4px 24px rgba(220,38,38,0.15);">
+          <div class="pillar-card-accent" style="background:var(--pillar-character);"></div>
+          <div class="pillar-header">
+            <div class="pillar-letter" style="color:var(--pillar-character);">C</div>
+            <div class="pillar-meta">
+              <div class="pillar-name" style="color:var(--pillar-character);">Character</div>
+              <div class="pillar-phase-badge">Foundation</div>
+            </div>
+          </div>
+          <p class="pillar-desc">Development of core values, integrity, and personal character as the bedrock of everything we do.</p>
+        </div>
+        <div class="pillar-card" style="box-shadow:0 4px 24px rgba(234,88,12,0.15);">
+          <div class="pillar-card-accent" style="background:var(--pillar-habits);"></div>
+          <div class="pillar-header">
+            <div class="pillar-letter" style="color:var(--pillar-habits);">H</div>
+            <div class="pillar-meta">
+              <div class="pillar-name" style="color:var(--pillar-habits);">Habits</div>
+              <div class="pillar-phase-badge">Foundation</div>
+            </div>
+          </div>
+          <p class="pillar-desc">Building daily practices and routines that create momentum, consistency, and lasting positive change.</p>
+        </div>
+        <div class="pillar-card" style="box-shadow:0 4px 24px rgba(217,119,6,0.15);">
+          <div class="pillar-card-accent" style="background:var(--pillar-appearance);"></div>
+          <div class="pillar-header">
+            <div class="pillar-letter" style="color:var(--pillar-appearance);">A</div>
+            <div class="pillar-meta">
+              <div class="pillar-name" style="color:var(--pillar-appearance);">Appearance</div>
+              <div class="pillar-phase-badge">Foundation</div>
+            </div>
+          </div>
+          <p class="pillar-desc">Presenting yourself with professionalism and intention. First impressions open doors; character keeps them open.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-number">02</div>
+        <div class="phase-info">
+          <div class="phase-title">Direction</div>
+          <div class="phase-theme">Why I do it + How I think</div>
+        </div>
+      </div>
+      <div class="champions-grid">
+        <div class="pillar-card" style="box-shadow:0 4px 24px rgba(5,150,105,0.15);">
+          <div class="pillar-card-accent" style="background:var(--pillar-mission);"></div>
+          <div class="pillar-header">
+            <div class="pillar-letter" style="color:var(--pillar-mission);">M</div>
+            <div class="pillar-meta">
+              <div class="pillar-name" style="color:var(--pillar-mission);">Mission</div>
+              <div class="pillar-phase-badge">Direction</div>
+            </div>
+          </div>
+          <p class="pillar-desc">Defining your purpose and aligning your actions to a clear, compelling reason for everything you pursue.</p>
+        </div>
+        <div class="pillar-card" style="box-shadow:0 4px 24px rgba(2,132,199,0.15);">
+          <div class="pillar-card-accent" style="background:var(--pillar-positive);"></div>
+          <div class="pillar-header">
+            <div class="pillar-letter" style="color:var(--pillar-positive);">P</div>
+            <div class="pillar-meta">
+              <div class="pillar-name" style="color:var(--pillar-positive);">Positive Attitude</div>
+              <div class="pillar-phase-badge">Direction</div>
+            </div>
+          </div>
+          <p class="pillar-desc">Cultivating an optimistic, growth-oriented mindset that transforms challenges into opportunities.</p>
+        </div>
+        <div class="pillar-card" style="box-shadow:0 4px 24px rgba(79,70,229,0.15);">
+          <div class="pillar-card-accent" style="background:var(--pillar-intentionality);"></div>
+          <div class="pillar-header">
+            <div class="pillar-letter" style="color:var(--pillar-intentionality);">I</div>
+            <div class="pillar-meta">
+              <div class="pillar-name" style="color:var(--pillar-intentionality);">Intentionality</div>
+              <div class="pillar-phase-badge">Direction</div>
+            </div>
+          </div>
+          <p class="pillar-desc">Acting with deliberate purpose. Every decision, relationship, and action is made with awareness and intent.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-number">03</div>
+        <div class="phase-info">
+          <div class="phase-title">Launch</div>
+          <div class="phase-theme">How I navigate the world + Legacy</div>
+        </div>
+      </div>
+      <div class="champions-grid">
+        <div class="pillar-card" style="box-shadow:0 4px 24px rgba(124,58,237,0.15);">
+          <div class="pillar-card-accent" style="background:var(--pillar-obstacles);"></div>
+          <div class="pillar-header">
+            <div class="pillar-letter" style="color:var(--pillar-obstacles);">O</div>
+            <div class="pillar-meta">
+              <div class="pillar-name" style="color:var(--pillar-obstacles);">Obstacles</div>
+              <div class="pillar-phase-badge">Launch</div>
+            </div>
+          </div>
+          <p class="pillar-desc">Developing resilience to identify, face, and overcome barriers that stand between you and your goals.</p>
+        </div>
+        <div class="pillar-card" style="box-shadow:0 4px 24px rgba(219,39,119,0.15);">
+          <div class="pillar-card-accent" style="background:var(--pillar-network);"></div>
+          <div class="pillar-header">
+            <div class="pillar-letter" style="color:var(--pillar-network);">N</div>
+            <div class="pillar-meta">
+              <div class="pillar-name" style="color:var(--pillar-network);">Network</div>
+              <div class="pillar-phase-badge">Launch</div>
+            </div>
+          </div>
+          <p class="pillar-desc">Building authentic relationships and a community of support that multiplies your reach and impact.</p>
+        </div>
+        <div class="pillar-card" style="box-shadow:0 4px 24px rgba(202,138,4,0.15);">
+          <div class="pillar-card-accent" style="background:var(--pillar-success);"></div>
+          <div class="pillar-header">
+            <div class="pillar-letter" style="color:var(--pillar-success);">S</div>
+            <div class="pillar-meta">
+              <div class="pillar-name" style="color:var(--pillar-success);">Success</div>
+              <div class="pillar-phase-badge">Launch</div>
+            </div>
+          </div>
+          <p class="pillar-desc">Defining and achieving success on your own terms — then paying it forward to uplift the next generation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pillar Color Strip -->
+    <div style="display:flex;border-radius:var(--radius-lg);overflow:hidden;height:48px;margin-top:var(--space-xl);">
+      <div style="flex:1;background:var(--pillar-character);"></div>
+      <div style="flex:1;background:var(--pillar-habits);"></div>
+      <div style="flex:1;background:var(--pillar-appearance);"></div>
+      <div style="flex:1;background:var(--pillar-mission);"></div>
+      <div style="flex:1;background:var(--pillar-positive);"></div>
+      <div style="flex:1;background:var(--pillar-intentionality);"></div>
+      <div style="flex:1;background:var(--pillar-obstacles);"></div>
+      <div style="flex:1;background:var(--pillar-network);"></div>
+      <div style="flex:1;background:var(--pillar-success);"></div>
+    </div>
+    <div style="display:flex;margin-top:var(--space-xs);">
+      <div style="flex:1;text-align:center;font-size:10px;font-family:var(--font-display);letter-spacing:0.05em;color:var(--white-40);">C</div>
+      <div style="flex:1;text-align:center;font-size:10px;font-family:var(--font-display);letter-spacing:0.05em;color:var(--white-40);">H</div>
+      <div style="flex:1;text-align:center;font-size:10px;font-family:var(--font-display);letter-spacing:0.05em;color:var(--white-40);">A</div>
+      <div style="flex:1;text-align:center;font-size:10px;font-family:var(--font-display);letter-spacing:0.05em;color:var(--white-40);">M</div>
+      <div style="flex:1;text-align:center;font-size:10px;font-family:var(--font-display);letter-spacing:0.05em;color:var(--white-40);">P</div>
+      <div style="flex:1;text-align:center;font-size:10px;font-family:var(--font-display);letter-spacing:0.05em;color:var(--white-40);">I</div>
+      <div style="flex:1;text-align:center;font-size:10px;font-family:var(--font-display);letter-spacing:0.05em;color:var(--white-40);">O</div>
+      <div style="flex:1;text-align:center;font-size:10px;font-family:var(--font-display);letter-spacing:0.05em;color:var(--white-40);">N</div>
+      <div style="flex:1;text-align:center;font-size:10px;font-family:var(--font-display);letter-spacing:0.05em;color:var(--white-40);">S</div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTION -->
+<section id="motion">
+  <div class="container">
+    <p class="section-label">06 — Motion</p>
+    <h2 class="section-title">Animations</h2>
+    <p style="font-size:var(--text-body-sm);color:var(--white-60);margin-bottom:var(--space-2xl);">Hover over each card to trigger the animation.</p>
+
+    <div class="anim-demos">
+      <div class="anim-box anim-fade-up">
+        <div class="anim-dot"></div>
+        <div class="anim-box-label">Fade Up<br/><span style="color:var(--white-40);">800ms</span></div>
+      </div>
+      <div class="anim-box anim-slide-left">
+        <div class="anim-dot" style="background:var(--moc-lime);"></div>
+        <div class="anim-box-label">Slide Left<br/><span style="color:var(--white-40);">800ms</span></div>
+      </div>
+      <div class="anim-box anim-scale-in">
+        <div class="anim-dot" style="background:var(--pillar-intentionality);"></div>
+        <div class="anim-box-label">Scale In<br/><span style="color:var(--white-40);">800ms</span></div>
+      </div>
+      <div class="anim-box anim-pop-in">
+        <div class="anim-dot" style="background:var(--pillar-network);"></div>
+        <div class="anim-box-label">Pop In<br/><span style="color:var(--white-40);">500ms</span></div>
+      </div>
+      <div class="anim-box anim-glow">
+        <div class="anim-dot"></div>
+        <div class="anim-box-label">Pulse Glow<br/><span style="color:var(--white-40);">2s loop</span></div>
+      </div>
+      <div class="anim-box anim-bounce">
+        <div class="anim-dot" style="background:var(--moc-lime);"></div>
+        <div class="anim-box-label">Bounce<br/><span style="color:var(--white-40);">2s loop</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:var(--space-2xl);padding:var(--space-xl);background:var(--white-6);border:1px solid var(--white-12);border-radius:var(--radius-xl);">
+      <p class="section-label" style="margin-bottom:var(--space-md);">Timing Reference</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md);">
+        <div>
+          <div style="font-size:var(--text-body-sm);font-weight:600;margin-bottom:4px;">Fast</div>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--moc-lime);">150ms</code>
+          <div style="font-size:var(--text-caption);color:var(--white-40);margin-top:2px;">Hover states</div>
+        </div>
+        <div>
+          <div style="font-size:var(--text-body-sm);font-weight:600;margin-bottom:4px;">Normal</div>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--moc-lime);">300ms</code>
+          <div style="font-size:var(--text-caption);color:var(--white-40);margin-top:2px;">State changes</div>
+        </div>
+        <div>
+          <div style="font-size:var(--text-body-sm);font-weight:600;margin-bottom:4px;">Medium</div>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--moc-lime);">500ms</code>
+          <div style="font-size:var(--text-caption);color:var(--white-40);margin-top:2px;">Complex anim</div>
+        </div>
+        <div>
+          <div style="font-size:var(--text-body-sm);font-weight:600;margin-bottom:4px;">Slow</div>
+          <code style="font-family:var(--font-mono);font-size:11px;color:var(--moc-lime);">700-800ms</code>
+          <div style="font-size:var(--text-caption);color:var(--white-40);margin-top:2px;">Scroll reveals</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p class="footer-tagline">A League. A <span>Lab.</span> A Legacy.</p>
+    <p class="footer-sub">Mindset of Champions &mdash; Design System v1.0 &mdash; Philadelphia, PA</p>
+    <p class="footer-sub" style="margin-top:var(--space-sm);font-size:11px;">Fiscally sponsored program of Athletes Charitable, a 501(c)(3) nonprofit organization.</p>
+  </div>
+</footer>
+
+<div class="strip"></div>
+
+</body>
+</html>
