@@ -38,10 +38,10 @@ Mindset of Champions is a Philadelphia-based nonprofit using esports, media prod
 - **Action-Oriented**: Calls to action, movement-driven language
 
 ### Brand Pillars
-1. **Esports & Gaming** — Competition as a vehicle for growth
-2. **Leadership Development** — Building character through mentorship
-3. **Career Readiness** — Real-world skills for future success
-4. **Community Impact** — Philadelphia-centered, youth-powered
+1. **Esports & Gaming**: Competition as a vehicle for growth
+2. **Leadership Development**: Building character through mentorship
+3. **Career Readiness**: Real-world skills for future success
+4. **Community Impact**: Philadelphia-centered, youth-powered
 
 ---
 
