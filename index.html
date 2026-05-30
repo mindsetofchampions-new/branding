@@ -264,7 +264,6 @@
       padding: var(--space-sm) var(--space-lg);
       font-size: var(--text-body-sm);
       color: var(--white-80);
-      margin-bottom: var(--space-xl);
     }
     .hero-badge-dot {
       width: 8px;
@@ -283,9 +282,7 @@
       text-transform: uppercase;
       letter-spacing: 0.025em;
       line-height: 1.0;
-      margin-bottom: var(--space-xl);
     }
-    .hero-title span { color: var(--moc-red); }
     .hero-sub {
       font-size: var(--text-body-lg);
       color: var(--white-60);
@@ -841,14 +838,16 @@
   <div class="hero-glow-red" aria-hidden="true"></div>
   <div class="hero-glow-lime" aria-hidden="true"></div>
   <div class="container">
-    <img src="brand-kit/logos/moc-logo.svg" alt="Mindset of Champions" style="height:72px;width:auto;display:block;margin-bottom:var(--space-xl);" />
-    <div class="hero-badge">
+    <div style="width:fit-content;max-width:100%;">
+      <img src="brand-kit/logos/moc-logo.svg" alt="Mindset of Champions" style="width:100%;height:auto;display:block;margin-bottom:var(--space-xl);" />
+      <h1 class="hero-title">
+        Mindset of<br/><span style="color:inherit;"><span style="color:var(--pillar-character);">C</span><span style="color:var(--pillar-habits);">h</span><span style="color:var(--pillar-appearance);">a</span><span style="color:var(--pillar-mission);">m</span><span style="color:var(--pillar-positive);">p</span><span style="color:var(--pillar-intentionality);">i</span><span style="color:var(--pillar-obstacles);">o</span><span style="color:var(--pillar-network);">n</span><span style="color:var(--pillar-success);">s</span></span>
+      </h1>
+    </div>
+    <div class="hero-badge" style="margin-top:var(--space-xl);margin-bottom:var(--space-xl);">
       <span class="hero-badge-dot" aria-hidden="true"></span>
       Design System v1.0
     </div>
-    <h1 class="hero-title">
-      Mindset<br/>of <span>Champions</span>
-    </h1>
     <p class="hero-sub">
       A technology-agnostic design system for building consistent MOC experiences across any platform or framework.
     </p>
