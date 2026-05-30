@@ -1,5 +1,8 @@
 # Mindset of Champions Brand Kit
 
+**Design System (live):** https://mindsetofchampions-new.github.io/branding/  
+**Repo:** https://github.com/mindsetofchampions-new/branding
+
 > Complete brand assets and design resources for Mindset of Champions.
 
 ---

@@ -1,5 +1,8 @@
 # Mindset of Champions Branding
 
+**Live:** https://mindsetofchampions-new.github.io/branding/  
+**Repo:** https://github.com/mindsetofchampions-new/branding
+
 > Central repository for all Mindset of Champions brand and design documentation.
 
 ---

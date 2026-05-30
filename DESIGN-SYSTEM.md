@@ -1,5 +1,8 @@
 # Mindset of Champions Design System
 
+**Live demo:** https://mindsetofchampions-new.github.io/branding/  
+**Repo:** https://github.com/mindsetofchampions-new/branding
+
 > A technology-agnostic design system documentation for building consistent Mindset of Champions experiences across any platform or framework.
 
 ---
